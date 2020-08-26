@@ -37,7 +37,6 @@ app.get("/api/products/:id", (req, res) => {
     }
 });
 
-var port = 5000
-app.listen(port, () => {
-    console.log(`Server is runnning on http://localhost:${port}`)
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`Server is runnning ...`)
 })
