@@ -2,13 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import path from 'path';
 
 import data from './data.js';
 import config from './config.js';
 import userRouter from "./routes/userRouter";
 
 mongoose.connect(
-    config.MONGODB_URL, {
+    config.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
@@ -37,6 +38,13 @@ app.get("/api/products/:id", (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log(`Server is runnning ...`)
-})
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
+
+export default app;
