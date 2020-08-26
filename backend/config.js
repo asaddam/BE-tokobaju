@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
-    MONGO_URI: process.env.MONGODB_URL,
-    JWT_SECRET: process.env.JWT_SECRET,
+    MONGO_URI: 'mongodb+srv://tokoUser:tokouserpass@tokobaju.dfna6.gcp.mongodb.net/tokobaju?retryWrites=true&w=majority',
+    JWT_SECRET: 'secret',
     PORT: process.env.PORT,
-    MONGO_DB_NAME: process.env.MONGO_DB_NAME,
+    MONGO_DB_NAME: 'tokobaju',
 }
